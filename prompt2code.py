@@ -4,16 +4,30 @@ import pickle
 from tokenize import tokenize, untokenize
 from torchtext.data import Field
 from colorama import Fore, Style, init
+import time
+
+
+# Mandatory Import (Do not remove) ------> Class which has our Model Structure
 from prompt_model import Encoder, EncoderLayer, PositionwiseFeedforwardLayer, MultiHeadAttentionLayer, Decoder, DecoderLayer, Seq2Seq
 
 
+# Loading the Model and Vocabulary Files
 try:
     model = torch.load('conversational-ai-model-main.pt',
                        map_location=torch.device('cpu'))
-    print(f"{Fore.LIGHTGREEN_EX}Model fetched successfully \n{Style.RESET_ALL}")
+    print(f"{Fore.LIGHTGREEN_EX}\n> Model fetched successfully{Style.RESET_ALL}")
+
+    with open('source_vocab.pkl', 'rb') as f:
+        src_vocab = pickle.load(f)
+    print(f"{Fore.LIGHTGREEN_EX}> Source Vocabulary loaded successfully{Style.RESET_ALL}")
+    with open('target_vocab.pkl', 'rb') as f:
+        trg_vocab = pickle.load(f)
+    print(f"{Fore.LIGHTGREEN_EX}> Target Vocabulary loaded successfully{Style.RESET_ALL}")
 except Exception as e:
     print(f"{Fore.RED}Error in fetching the model : {e} \n{Style.RESET_ALL}")
 
+
+# Source (prompt questions) and Target (python codes) Vocabularies
 SRC = Field(tokenize=lambda x: x.split(),
             init_token='<sos>',
             eos_token='<eos>',
@@ -23,19 +37,15 @@ TRG = Field(tokenize=lambda x: x.split(),
             init_token='<sos>',
             eos_token='<eos>',
             lower=True)
-
-with open('source_vocab.pkl', 'rb') as f:
-    src_vocab = pickle.load(f)
-
-with open('target_vocab.pkl', 'rb') as f:
-    trg_vocab = pickle.load(f)
-
 SRC.vocab = src_vocab
 TRG.vocab = trg_vocab
 
+
+# System GPU is available or not
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
+# Convert the prompt to tokens and tensors, apply the model for code generation
 def translate_sentence(sentence, src_field, trg_field, model, device, max_len=50000):
     model.eval()
     if isinstance(sentence, str):
@@ -69,14 +79,22 @@ def translate_sentence(sentence, src_field, trg_field, model, device, max_len=50
     return trg_tokens[1:], attention
 
 
+# Function to generate code from user prompt
 def eng_to_python(src):
     src = src.split(" ")
-    translation, attention = translate_sentence(src, SRC, TRG, model, device)
-
-    print(f'predicted trg: \n')
-    print(untokenize(translation[:-1]).decode('utf-8'))
+    translation, _ = translate_sentence(src, SRC, TRG, model, device)
+    return untokenize(translation[:-1]).decode('utf-8')
 
 
 if __name__ == "__main__":
-    src = "program to print even numbers"
-    eng_to_python(src)
+    try:
+        prompt = input(
+            f"\n{Fore.CYAN}>>> Enter the prompt to generate code : {Style.RESET_ALL}")
+        answer = eng_to_python(prompt)
+        print(f"{Fore.YELLOW}")
+        for char in answer:
+            print(char, end="", flush=True)
+            time.sleep(0.1)
+        print(f"{Style.RESET_ALL}")
+    except:
+        print(f"{Fore.RED}Facing some issues, trying again later. {Style.RESET_ALL}")
