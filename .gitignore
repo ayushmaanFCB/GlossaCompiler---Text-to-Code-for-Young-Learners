@@ -1,0 +1,6 @@
+# FOLDERS
+.venv
+__pycache__
+
+# FILES
+test.py
