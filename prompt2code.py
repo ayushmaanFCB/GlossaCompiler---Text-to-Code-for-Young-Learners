@@ -13,14 +13,14 @@ from prompt_model import Encoder, EncoderLayer, PositionwiseFeedforwardLayer, Mu
 
 # Loading the Model and Vocabulary Files
 try:
-    model = torch.load('conversational-ai-model-main.pt',
+    model = torch.load('./models/conversational-ai-model-main.pt',
                        map_location=torch.device('cpu'))
     print(f"{Fore.LIGHTGREEN_EX}\n> Model fetched successfully{Style.RESET_ALL}")
 
-    with open('source_vocab.pkl', 'rb') as f:
+    with open('./vocabs/source_vocab.pkl', 'rb') as f:
         src_vocab = pickle.load(f)
     print(f"{Fore.LIGHTGREEN_EX}> Source Vocabulary loaded successfully{Style.RESET_ALL}")
-    with open('target_vocab.pkl', 'rb') as f:
+    with open('./vocabs/target_vocab.pkl', 'rb') as f:
         trg_vocab = pickle.load(f)
     print(f"{Fore.LIGHTGREEN_EX}> Target Vocabulary loaded successfully{Style.RESET_ALL}")
 except Exception as e:
