@@ -1,0 +1,75 @@
+# Function for nth Fibonacci number 
+def Fibonacci(n): 
+    if n<0: 
+        print("Incorrect input") 
+    # First Fibonacci number is 0 
+    elif n==0: 
+        return 0
+    # Second Fibonacci number is 1 
+    elif n==1: 
+        return 1
+    else: 
+        return Fibonacci(n-1)+Fibonacci(n-2) 
+
+# write a python program to add two list of same length.
+def add_two_list_items():
+    num1 = [1,2,3]
+    num2 = [4,5,6]
+    sum = num1 + num2
+    print(f'Sum: {sum}')
+
+# write a python program to add numbers from two list if first list item is even and second list item is odd.
+def add_two_lists_even_odd(l1, l2):
+    new = []
+    for x, y in zip(l1, l2):
+        if l1%2 == 0 and l2%2 != 0:
+            new.append(x+y)
+    return new
+
+# Write a Python function that returns True if a string is empty and False otherwise.
+def is_empty(s):
+    if s == "":
+        return True
+    else:
+        return False
+
+# Write a Python function that accepts a measurement value in inches and returns the equivalent in feet
+def inches_to_feet(inches):
+    if inches < 12:
+        return 0
+    return inches/12
+
+# Write a Python function that takes the age and return the age in days.
+def calc_age(age):
+    calculation = age*365
+    return calculation
+
+# write a python program to count the number of each vowels
+vowels = 'aeiou'
+ip_str = 'Hello, have you tried our tutorial section yet?'
+ip_str = ip_str.casefold()
+count = {}.fromkeys(vowels,0)
+for char in ip_str:
+   if char in count:
+       count[char] += 1
+print(count)
+
+# write a python program to print two sets union using operations like in mathematic
+E = {0, 2, 4, 6, 8};
+N = {1, 2, 3, 4, 5};
+print("Union of E and N is",E | N)
+
+# write a python program to print two sets intersection using operations like in mathematic
+E = {0, 2, 4, 6, 8};
+N = {1, 2, 3, 4, 5};
+print("Intersection of E and N is",E & N)
+
+# write a python program to print two sets differences using operations like in mathematic
+E = {0, 2, 4, 6, 8};
+N = {1, 2, 3, 4, 5};
+print("Difference of E and N is",E - N)
+
+# write a python program to print two sets symmetric differences using operations like in mathematic
+E = {0, 2, 4, 6, 8};
+N = {1, 2, 3, 4, 5};
+print("Symmetric difference of E and N is",E ^ N)
