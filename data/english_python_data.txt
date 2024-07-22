@@ -12,7 +12,6 @@ def add_two_numbers(num1, num2):
 
 
 # write a program to find and print the largest among three numbers
-
 num1 = 10
 num2 = 12
 num3 = 14

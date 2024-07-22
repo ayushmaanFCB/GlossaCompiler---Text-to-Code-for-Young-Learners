@@ -13,7 +13,7 @@ from prompt_model import Encoder, EncoderLayer, PositionwiseFeedforwardLayer, Mu
 
 # Loading the Model and Vocabulary Files
 try:
-    model = torch.load('./models/conversational-ai-model-main.pt',
+    model = torch.load('./models/conversational-ai-model-cpu.pt',
                        map_location=torch.device('cpu'))
     print(f"{Fore.LIGHTGREEN_EX}\n> Model fetched successfully{Style.RESET_ALL}")
 
