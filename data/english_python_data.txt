@@ -25474,7 +25474,6 @@ your_ip = clean.split('</body></html>', 1)[0]
 print("your IP Address is: ",  your_ip)
 
 #  Write a python function to generate a random password
-
 import random
 
 LOWERCASE_CHARS = tuple(map(chr, range(ord('a'), ord('z')+1)))

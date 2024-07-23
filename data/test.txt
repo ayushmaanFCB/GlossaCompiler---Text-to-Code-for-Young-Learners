@@ -1,75 +1,87 @@
-# Function for nth Fibonacci number 
-def Fibonacci(n): 
-    if n<0: 
-        print("Incorrect input") 
-    # First Fibonacci number is 0 
-    elif n==0: 
-        return 0
-    # Second Fibonacci number is 1 
-    elif n==1: 
+# write a python function to find the square of a number
+def square(n):
+    return n * n
+
+# write a python function to check if a number is even
+def is_even(n):
+    return n % 2 == 0
+
+# write a python function to return the larger of two numbers
+def max_num(a, b):
+    return a if a > b else b
+
+# write a python function to reverse a string
+def reverse_string(s):
+    return s[::-1]
+
+# write a python function to return the sum of elements in a list
+def sum_list(lst):
+    return sum(lst)
+
+# write a python function to find the factorial of a number
+def factorial(n):
+    if n == 0:
         return 1
-    else: 
-        return Fibonacci(n-1)+Fibonacci(n-2) 
-
-# write a python program to add two list of same length.
-def add_two_list_items():
-    num1 = [1,2,3]
-    num2 = [4,5,6]
-    sum = num1 + num2
-    print(f'Sum: {sum}')
-
-# write a python program to add numbers from two list if first list item is even and second list item is odd.
-def add_two_lists_even_odd(l1, l2):
-    new = []
-    for x, y in zip(l1, l2):
-        if l1%2 == 0 and l2%2 != 0:
-            new.append(x+y)
-    return new
-
-# Write a Python function that returns True if a string is empty and False otherwise.
-def is_empty(s):
-    if s == "":
-        return True
     else:
+        return n * factorial(n-1)
+
+# write a python function to check if a string is a palindrome
+def is_palindrome(s):
+    return s == s[::-1]
+
+# write a python function to convert Celsius to Fahrenheit
+def celsius_to_fahrenheit(c):
+    return (c * 9/5) + 32
+
+# write a python function to find the minimum of three numbers
+def min_num(a, b, c):
+    return min(a, b, c)
+
+# write a python function to count the occurrences of a character in a string
+def count_char(s, char):
+    return s.count(char)
+
+# write a python function to check if a number is prime
+def is_prime(n):
+    if n <= 1:
         return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-# Write a Python function that accepts a measurement value in inches and returns the equivalent in feet
-def inches_to_feet(inches):
-    if inches < 12:
-        return 0
-    return inches/12
+# write a python function to find the length of a list
+def list_length(lst):
+    return len(lst)
 
-# Write a Python function that takes the age and return the age in days.
-def calc_age(age):
-    calculation = age*365
-    return calculation
+# write a python function to return the first element of a list
+def first_element(lst):
+    return lst[0] if lst else None
 
-# write a python program to count the number of each vowels
-vowels = 'aeiou'
-ip_str = 'Hello, have you tried our tutorial section yet?'
-ip_str = ip_str.casefold()
-count = {}.fromkeys(vowels,0)
-for char in ip_str:
-   if char in count:
-       count[char] += 1
-print(count)
+# write a python function to return the last element of a list
+def last_element(lst):
+    return lst[-1] if lst else None
 
-# write a python program to print two sets union using operations like in mathematic
-E = {0, 2, 4, 6, 8};
-N = {1, 2, 3, 4, 5};
-print("Union of E and N is",E | N)
+# write a python function to check if a list is empty
+def is_empty(lst):
+    return len(lst) == 0
 
-# write a python program to print two sets intersection using operations like in mathematic
-E = {0, 2, 4, 6, 8};
-N = {1, 2, 3, 4, 5};
-print("Intersection of E and N is",E & N)
+# write a python function to return the absolute value of a number
+def absolute_value(n):
+    return abs(n)
 
-# write a python program to print two sets differences using operations like in mathematic
-E = {0, 2, 4, 6, 8};
-N = {1, 2, 3, 4, 5};
-print("Difference of E and N is",E - N)
+# write a python function to convert a string to uppercase
+def to_uppercase(s):
+    return s.upper()
 
-# write a python program to print two sets symmetric differences using operations like in mathematic
-E = {0, 2, 4, 6, 8};
-N = {1, 2, 3, 4, 5};
-print("Symmetric difference of E and N is",E ^ N)
+# write a python function to convert a string to lowercase
+def to_lowercase(s):
+    return s.lower()
+
+# write a python function to capitalize the first letter of a string
+def capitalize_string(s):
+    return s.capitalize()
+
+# write a python function to return the remainder of a division
+def remainder(a, b):
+    return a % b
