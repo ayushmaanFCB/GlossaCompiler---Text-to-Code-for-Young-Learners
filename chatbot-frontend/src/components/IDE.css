@@ -1,0 +1,119 @@
+/* Container to hold both chatbox and IDE side by side */
+.app-container {
+    display: flex;
+    height: 100vh;  /* Full screen height */
+    width: 100%;
+}
+
+/* Chatbox takes half the width */
+.chatbox-section {
+    flex: 1;
+    padding: 10px;
+    border-right: 2px solid #ccc;  /* Optional: Add a border to separate sections */
+}
+
+/* IDE takes the other half */
+.ide-section {
+    flex: 1;
+    padding: 10px;
+}
+
+/* Style for the IDE component */
+.ide-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.code-editor {
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+}
+
+.compile-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Container for the entire IDE */
+.ide-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;  /* Full height within the IDE section */
+}
+
+/* Upper half: 70% for the code editor and compile button */
+.ide-editor-section {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+/* Code editor styling */
+.code-editor {
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+/* Compile button styling */
+.compile-button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Lower half: 30% for the test case input and output */
+.ide-output-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Test case input area */
+.testcase-editor {
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+/* Output display area */
+.output-area {
+    flex: 1;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    white-space: pre-wrap;  /* Preserves whitespace and line breaks */
+    overflow-y: auto;       /* Allows scrolling if content overflows */
+}
