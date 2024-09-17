@@ -15,6 +15,8 @@ import pickle
 import spacy
 import torch
 from dotenv import load_dotenv
+from flask_cors import CORS
+
 
 # Loading the Model and Vocabulary Files
 try:
@@ -95,6 +97,9 @@ def eng_to_python(src):
 
 app = Flask(__name__)
 
+# CROSS RESOURCE SHARING - To Frontend React
+CORS(app)
+
 
 @app.route("/generate-code", methods=["POST"])
 def generate_code():
@@ -103,7 +108,7 @@ def generate_code():
     try:
         generated_code = eng_to_python(prompt)
         print(
-            f"{Fore.LIGHTBLUE_EX}\nGENERATED CODE : \n {generate_code}{Style.RESET_ALL}"
+            f"{Fore.LIGHTBLUE_EX}\nGENERATED CODE : \n {generated_code}{Style.RESET_ALL}"
         )
         return jsonify({"code": generated_code})
 

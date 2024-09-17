@@ -1,0 +1,73 @@
+.chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f7f9;
+}
+
+.chat-window {
+    width: 400px;
+    height: 70vh; /* Set a fixed height for the chat window (70% of the viewport height) */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent the chat window itself from growing */
+}
+
+.chat-history {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* Make the chat history scrollable */
+    max-height: 100%; /* Ensure it doesn't grow beyond the chat window */
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.user-message {
+    background-color: #e1ffc7;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
