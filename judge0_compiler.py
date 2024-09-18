@@ -13,7 +13,7 @@ except Exception as e:
 
 # Generate a submission and send it to RapidAI's Judge0 Client for compilation
 def create_submission(source_code):
-    querystring = {"base64_encoded": "true", "wait": "false", "fields": "*"}
+    querystring = {"base64_encoded": "true", "wait": "true", "fields": "*"}
     encoded_source_code = base64.b64encode(source_code.encode("utf-8")).decode("utf-8")
     payload = {
         "language_id": 71,

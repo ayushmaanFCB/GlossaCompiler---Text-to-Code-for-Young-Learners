@@ -16,6 +16,7 @@ import spacy
 import torch
 from dotenv import load_dotenv
 from flask_cors import CORS
+import judge0_compiler
 
 
 # Loading the Model and Vocabulary Files
@@ -115,6 +116,17 @@ def generate_code():
     except Exception as e:
         print(f"{Fore.RED}ERROR GENERATING PROMPT : {Style.RESET_ALL}", e)
         return None
+
+
+@app.route("/compile-code", methods=["POST"])
+def compiler():
+    data = request.json
+    code = data.get("source_code")
+    print(code)
+    compiled_token = judge0_compiler.create_submission(source_code=code)
+    print(compiled_token)
+    compiled_output = judge0_compiler.get_submission(token=compiled_token)
+    return jsonify({"compiled_output": compiled_output})
 
 
 if __name__ == "__main__":
