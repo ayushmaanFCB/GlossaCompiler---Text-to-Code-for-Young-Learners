@@ -122,9 +122,7 @@ def generate_code():
 def compiler():
     data = request.json
     code = data.get("source_code")
-    print(code)
     compiled_token = judge0_compiler.create_submission(source_code=code)
-    print(compiled_token)
     compiled_output = judge0_compiler.get_submission(token=compiled_token)
     return jsonify({"compiled_output": compiled_output})
 
