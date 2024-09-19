@@ -4,29 +4,20 @@ import "./Chatbox.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 
-function Chatbox() {
-  const [messages, setMessages] = useState([]); // Holds chat history
+function Chatbox({ onCopyToIDE }) {
+  const [messages, setMessages] = useState([]);
   const [userMessage, setUserMessage] = useState("");
-  const chatHistoryRef = useRef(null); // Reference to the chat history container
+  const chatHistoryRef = useRef(null);
 
-  // Function to handle sending user input
   const handleSendMessage = async () => {
-    if (!userMessage.trim()) return; // Prevent sending empty messages
-
-    // Add user's message to the chat history
+    if (!userMessage.trim()) return;
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
-
-    // Clear input field
     setUserMessage("");
-
     try {
-      // Send the user input (prompt) to the backend
       const response = await axios.post("http://localhost:5000/generate-code", {
         prompt: userMessage,
       });
       const botMessage = response.data.code;
-
-      // Add bot's response to the chat history
       setMessages((prev) => [...prev, { sender: "bot", text: botMessage }]);
     } catch (error) {
       console.error("Error generating code", error);
@@ -37,13 +28,12 @@ function Chatbox() {
     }
   };
 
-  // Automatically scroll to the latest message
   useEffect(() => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
     }
-    hljs.highlightAll(); // Apply syntax highlighting to all code blocks
-  }, [messages]); // Runs every time messages change
+    hljs.highlightAll();
+  }, [messages]);
 
   return (
     <div className="chat-container">
@@ -57,16 +47,23 @@ function Chatbox() {
               }`}
             >
               {msg.sender === "bot" ? (
-                <pre>
-                  <code>{msg.text}</code>
-                </pre> // Display bot response as formatted code
+                <>
+                  <pre>
+                    <code>{msg.text}</code>
+                  </pre>
+                  <button
+                    className="copy-button"
+                    onClick={() => onCopyToIDE(msg.text)}
+                  >
+                    Copy to IDE
+                  </button>
+                </>
               ) : (
-                msg.text // Display user input as plain text
+                msg.text
               )}
             </div>
           ))}
         </div>
-
         <div className="chat-input">
           <input
             type="text"
@@ -75,7 +72,7 @@ function Chatbox() {
             placeholder="Enter your message..."
             onKeyDown={(e) => {
               if (e.key === "Enter") handleSendMessage();
-            }} // Send message on Enter key
+            }}
           />
           <button onClick={handleSendMessage}>Send</button>
         </div>
