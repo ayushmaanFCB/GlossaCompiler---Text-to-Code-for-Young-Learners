@@ -1,55 +1,60 @@
 import React, { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader"; // Import the spinner
 import "./IDE.css"; // Style it separately
+import { Controlled as CodeMirror } from "react-codemirror2";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/material.css"; // Dark theme
+import "codemirror/mode/python/python"; // Python mode
 
 const IDE = ({ code, setCode }) => {
-  // const [code, setCode] = useState("");
   const [testCase, setTestCase] = useState("");
   const [output, setOutput] = useState("");
-  // console.log("IDE code state:", code);
+  const [loading, setLoading] = useState(false); // State for loading
+  const [buttonText, setButtonText] = useState("Compile"); // State for button text
 
   const handleCompile = async () => {
+    setLoading(true); // Set loading to true
+    setButtonText("Compiling..."); // Change button text to Compiling
     try {
-      // Make a POST request to /compile-code
       const response = await fetch("http://localhost:5000/compile-code", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ source_code: code, input_data: testCase }), // Send code and testCase
+        body: JSON.stringify({ source_code: code, input_data: testCase }),
       });
 
-      // Handle the response
       if (response.ok) {
         const data = await response.json();
-        setOutput(data.compiled_output); // Update output with the response
+        setOutput(data.compiled_output);
       } else {
         setOutput("Error compiling code");
       }
     } catch (error) {
       console.error("Error:", error);
       setOutput("Error while compiling");
+    } finally {
+      setLoading(false); // Set loading to false after response
+      setButtonText("Compile"); // Reset button text back to Compile
     }
   };
 
   return (
     <div className="ide-container">
-      {/* Upper section: code editor + compile button */}
       <div className="ide-editor-section">
         <textarea
           className="code-editor"
           value={code}
           onChange={(e) => {
             setCode(e.target.value);
-            console.log("Code in IDE:", e.target.value);
           }}
           placeholder="Write your code here..."
         ></textarea>
         <button className="compile-button" onClick={handleCompile}>
-          Compile
+          {buttonText} {/* Dynamic button text */}
         </button>
       </div>
 
-      {/* Lower section: test case input + output area */}
       <div className="ide-output-section">
         <textarea
           className="testcase-editor"
@@ -58,7 +63,14 @@ const IDE = ({ code, setCode }) => {
           placeholder="Enter input values here..."
         ></textarea>
         <div className="output-area">
-          <pre>{output}</pre> {/* Display the compiled output */}
+          {loading ? (
+            <div className="spinner-container">
+              <ClipLoader loading={loading} size={50} />{" "}
+              {/* Spinner component */}
+            </div>
+          ) : (
+            <pre>{output}</pre>
+          )}
         </div>
       </div>
     </div>

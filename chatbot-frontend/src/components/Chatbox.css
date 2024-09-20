@@ -1,88 +1,163 @@
 .chat-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: #f4f7f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: repeating-linear-gradient(
+      45deg,
+      #0000 calc(-650% / 13) calc(50% / 13),
+      #370b22 0 calc(100% / 13),
+      #0000 0 calc(150% / 13),
+      #370b22 0 calc(200% / 13),
+      #0000 0 calc(250% / 13),
+      #370b22 0 calc(300% / 13)
+    ),
+    repeating-linear-gradient(
+        45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #370b22 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #370b22 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #370b22 0 calc(300% / 13)
+      )
+      38px 38px,
+    repeating-linear-gradient(
+      -45deg,
+      #0000 calc(-650% / 13) calc(50% / 13),
+      #370b22 0 calc(100% / 13),
+      #0000 0 calc(150% / 13),
+      #370b22 0 calc(200% / 13),
+      #0000 0 calc(250% / 13),
+      #370b22 0 calc(300% / 13)
+    ),
+    repeating-linear-gradient(
+        -45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #370b22 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #370b22 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #370b22 0 calc(300% / 13)
+      )
+      38px 38px #051330;
+  background-size: 76px 76px;
 }
 
 .chat-window {
-    width: 400px;
-    height: 70vh; /* Set a fixed height for the chat window (70% of the viewport height) */
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Prevent the chat window itself from growing */
+  width: 500px;
+  height: 80vh;
+  background-image: url("https://w0.peakpx.com/wallpaper/392/251/HD-wallpaper-python-kod-kodlama-piton-code-software-mobile-logo-py-yazilim.jpg"); /* Replace with your image URL */
+  background-size: cover; /* Ensure the image covers the entire chat window */
+  background-position: center; /* Center the image */
+  border-radius: 20px;
+  box-shadow: 0 0 20px 1px rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: white; /* Default text color */
 }
 
 .chat-history {
-    flex-grow: 1;
-    padding: 10px;
-    overflow-y: auto; /* Make the chat history scrollable */
-    max-height: 100%; /* Ensure it doesn't grow beyond the chat window */
-    display: flex;
-    flex-direction: column;
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .user-message {
-    background-color: #e1ffc7;
-    align-self: flex-end;
-    text-align: right;
+  background: linear-gradient(
+    120deg,
+    #091e48,
+    #530f31
+  ); /* Blue gradient for user messages */
+  align-self: flex-end;
+  text-align: right;
+  color: white; /* Text color */
 }
 
 .bot-message {
-    background-color: #f1f1f1;
-    align-self: flex-start;
-    text-align: left;
+  background: linear-gradient(
+    135deg,
+    #530f31,
+    #091e48
+  ); /* Dark gradient for bot messages */
+  align-self: flex-start;
+  text-align: left;
+  color: white; /* Text color */
 }
 
 .chat-input {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #444;
+  background: linear-gradient(
+    to left,
+    #350920,
+    #051431
+  ); /* Black to blue gradient for input area */
 }
 
 .chat-input input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 50px;
+  margin-right: 10px;
+  background: linear-gradient(
+    to left,
+    #091e48,
+    #530f31
+  ); /* Black to blue gradient for input area */
+  color: white; /* Input text color */
+  border-style: solid;
+  border-color: #051431;
 }
 
 .chat-input button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background: linear-gradient(
+    to left,
+    #091e48,
+    #530f31
+  ); /* Black to blue gradient for input area */
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #0056b3;
+  background: linear-gradient(
+    to left,
+    #051431,
+    #350920
+  ); /* Black to blue gradient for input area */
 }
 
 .copy-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
+  background-color: #051431;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  border-style: solid;
+  border-color: #051431;
 }
 
 .copy-button:hover {
-    background-color: #218838;
+  background-color: #350920;
 }
