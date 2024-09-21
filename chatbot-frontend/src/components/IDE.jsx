@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader"; // Import the spinner
 import "./IDE.css"; // Style it separately
-import { Controlled as CodeMirror } from "react-codemirror2";
-import "codemirror/lib/codemirror.css";
-import "codemirror/theme/material.css"; // Dark theme
-import "codemirror/mode/python/python"; // Python mode
 
 const IDE = ({ code, setCode }) => {
   const [testCase, setTestCase] = useState("");

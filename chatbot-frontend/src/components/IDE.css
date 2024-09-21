@@ -1,85 +1,31 @@
-/* Container to hold both chatbox and IDE side by side */
 .app-container {
   display: flex;
   width: 100%;
-  background: repeating-linear-gradient(
-      45deg,
-      #0000 calc(-650% / 13) calc(50% / 13),
-      #370b22 0 calc(100% / 13),
-      #0000 0 calc(150% / 13),
-      #370b22 0 calc(200% / 13),
-      #0000 0 calc(250% / 13),
-      #370b22 0 calc(300% / 13)
-    ),
-    repeating-linear-gradient(
-        45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #370b22 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #370b22 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #370b22 0 calc(300% / 13)
-      )
-      38px 38px,
-    repeating-linear-gradient(
-      -45deg,
-      #0000 calc(-650% / 13) calc(50% / 13),
-      #370b22 0 calc(100% / 13),
-      #0000 0 calc(150% / 13),
-      #370b22 0 calc(200% / 13),
-      #0000 0 calc(250% / 13),
-      #370b22 0 calc(300% / 13)
-    ),
-    repeating-linear-gradient(
-        -45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #370b22 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #370b22 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #370b22 0 calc(300% / 13)
-      )
-      38px 38px #051330;
-  background-size: 76px 76px;
 }
 
-/* Chatbox takes half the width */
 .chatbox-section {
-  flex: 1;
+  flex: 1.5;
   padding: 10px;
-  border-right: 2px solid #ccc; /* Optional: Add a border to separate sections */
 }
 
-/* IDE takes the other half */
 .ide-section {
   flex: 1;
   padding: 20px;
 }
 
-/* Style for the IDE component */
 .ide-container {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-/* Container for the entire IDE */
-.ide-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%; /* Full height within the IDE section */
-}
-
-/* Upper half: 70% for the code editor */
 .ide-editor-section {
   flex: 6;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
 }
 
-/* Code editor styling */
 .code-editor {
   flex: 1;
   padding: 10px;
@@ -93,7 +39,6 @@
   color: white;
 }
 
-/* Compile button styling: Positioned on top right of the editor */
 .compile-button {
   position: absolute;
   top: 10px;
@@ -107,42 +52,41 @@
   z-index: 1;
 }
 
-/* Lower half: 30% for the test case input and output */
 .ide-output-section {
   flex: 3;
   display: flex;
   flex-direction: column;
 }
 
-/* Test case input area: Slightly smaller */
 .testcase-editor {
   flex: 1;
   padding: 10px;
   font-family: monospace;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 15px;
   resize: none;
   outline: none;
   margin-bottom: 10px;
+  background-color: #290a20;
+  color: white;
 }
 
-/* Output display area: Larger */
 .output-area {
   flex: 3;
+  color: white;
   padding: 10px;
   font-family: monospace;
   font-size: 14px;
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  white-space: pre-wrap; /* Preserves whitespace and line breaks */
-  overflow-y: auto; /* Allows scrolling if content overflows */
+  background: linear-gradient(to left, #091e48, #530f31);
+  border-radius: 15px;
+  white-space: pre-wrap;
+  overflow-y: auto;
 }
 
 .spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Full height of the output area */
+  height: 100%;
+  color: white;
 }
