@@ -81,6 +81,7 @@
   border-radius: 15px;
   white-space: pre-wrap;
   overflow-y: auto;
+  text-align: left;
 }
 
 .spinner-container {
@@ -89,4 +90,26 @@
   align-items: center;
   height: 100%;
   color: white;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal-fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+body.modal-active .App {
+  filter: blur(5px);
+  transition: filter 0.5s ease;
+}
+
+body:not(.modal-active) .App {
+  filter: none;
 }

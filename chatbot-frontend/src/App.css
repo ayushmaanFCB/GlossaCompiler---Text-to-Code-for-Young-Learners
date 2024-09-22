@@ -44,10 +44,6 @@
       38px 38px #051330;
   background-size: 76px 76px;
 }
-/* 
-.title-class {
-  background: linear-gradient(to left, #091e48, #530f31);
-} */
 
 .page-title {
   flex: 0 0 auto;
@@ -57,7 +53,7 @@
 }
 
 .banner {
-  width: 500px;
+  width: 460px;
   height: 100px;
 }
 
@@ -111,14 +107,14 @@
 .chatbox-section {
   flex: 1.5;
   padding: 10px;
-  overflow-y: auto; /* Scrolls inside the section if content overflows */
+  overflow-y: auto;
   margin-top: 4px;
 }
 
 .ide-section {
   flex: 1;
   padding: 20px;
-  overflow-y: auto; /* Scrolls inside the section if content overflows */
+  overflow-y: auto;
 }
 
 .App-logo {
@@ -157,46 +153,37 @@
 }
 
 .floating-button {
-  position: fixed; /* Fixed positioning for floating effect */
-  left: 10px; /* Position to the left edge */
-  width: 65px; /* Button width */
-  height: 65px; /* Button height */
+  position: fixed;
+  left: 10px;
+  width: 65px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none; /* Remove underline from links */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for a floating effect */
-  transition: transform 0.3s ease; /* Smooth hover effect */
+  text-decoration: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
 .floating-button:hover {
-  transform: scale(1.5); /* Slightly enlarge the button on hover */
-  opacity: 0.9; /* Slightly reduce opacity on hover */
+  transform: scale(1.5);
+  opacity: 0.9;
 }
 
 .floating-button img {
-  width: 100%; /* Ensure the image fits the button size */
-  height: 100%; /* Ensure the image fits the button size */
-  border-radius: 50%; /* Optional: Make the image round */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 #button1 {
-  top: calc(
-    50% - 60px
-  ); /* Position the first button in the center vertically */
+  top: calc(50% - 60px);
 }
 
 #button2 {
-  top: calc(50% + 20px); /* Position the second button 80px below the first */
+  top: calc(50% + 20px);
 }
 
-/* Blurred background effect when the modal is active */
-body.modal-active {
-  filter: blur(5px);
-  overflow: hidden; /* Prevent scrolling when the modal is active */
-}
-
-/* Modal container */
 .modal {
   position: fixed;
   top: 0;
@@ -206,38 +193,44 @@ body.modal-active {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  z-index: 1000; /* Ensure the modal is on top */
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
 }
 
-/* Modal content box */
 .modal-content {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
+  background: linear-gradient(to left, #051431, #350920);
+  padding: 60px;
+  border-radius: 20px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
 }
 
 .modal-content h2 {
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
-.modal-content button {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
+.image-button {
+  margin: 15px;
   cursor: pointer;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
+}
+
+.image-button:hover {
+  transform: scale(1.5);
+}
+
+.image-text-group {
+  display: inline-block;
+  margin: 15px;
+  text-align: center;
+}
+
+.image-description {
+  margin-top: 10px;
   font-size: 1rem;
-}
-
-.stay-button {
-  background-color: #4caf50;
-  color: white;
-}
-
-.navigate-button {
-  background-color: #f44336;
   color: white;
 }

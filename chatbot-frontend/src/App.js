@@ -4,16 +4,21 @@ import Chatbox from "./components/Chatbot";
 import IDE from "./components/IDE";
 
 const App = () => {
-  const [code, setCode] = useState(""); // State to hold the code for IDE
+  const [code, setCode] = useState("");
   const [modalVisible, setModalVisible] = useState(true);
 
   const handleStay = () => {
-    setModalVisible(false); // Hide the modal and remove blur effect
-    document.body.classList.remove("modal-active");
+    const modalElement = document.querySelector(".modal");
+    modalElement.classList.add("modal-fade-out");
+    setTimeout(() => {
+      setModalVisible(false);
+      document.body.classList.remove("modal-active");
+    }, 1000); // Match the timeout duration with the animation duration (0.5s)
   };
 
   const handleNavigate = () => {
-    window.location.href = "https://example.com"; // Replace with your desired link
+    window.location.href =
+      "https://discord.com/oauth2/authorize?client_id=1262688746630021142"; // Replace with your desired link
   };
 
   // Function to update the IDE's code editor
@@ -26,13 +31,25 @@ const App = () => {
       {modalVisible && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Choose an Option</h2>
-            <button className="stay-button" onClick={handleStay}>
-              Stay on the Website
-            </button>
-            <button className="navigate-button" onClick={handleNavigate}>
-              Navigate to Another Link
-            </button>
+            <h1>Welcome to EchoCode</h1>
+            <div className="image-text-group">
+              <img
+                src="favicon.png" /* Replace with the path to your image */
+                alt="Stay on the Website"
+                className="image-button"
+                onClick={handleStay}
+              />
+              <p className="image-description">Explore our Studio</p>
+            </div>
+            <div className="image-text-group">
+              <img
+                src="discord.png" /* Replace with the path to your image */
+                alt="Navigate to Another Link"
+                className="image-button"
+                onClick={handleNavigate}
+              />
+              <p className="image-description">Try our Discord Bot</p>
+            </div>
           </div>
         </div>
       )}

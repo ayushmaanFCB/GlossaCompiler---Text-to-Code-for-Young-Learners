@@ -2,17 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
 }
 
 .chat-window {
   width: 500px;
   height: 80vh;
-  background-image: url("https://w0.peakpx.com/wallpaper/392/251/HD-wallpaper-python-kod-kodlama-piton-code-software-mobile-logo-py-yazilim.jpg"); /* Replace with your image URL */
+  background-image: url("https://w0.peakpx.com/wallpaper/392/251/HD-wallpaper-python-kod-kodlama-piton-code-software-mobile-logo-py-yazilim.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 20px;
-  box-shadow: 0 0 20px 1px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px 3px rgb(121, 38, 80, 0.8);
   display: flex;
   flex-direction: column;
   overflow: hidden;
