@@ -1,0 +1,115 @@
+.app-container {
+  display: flex;
+  width: 100%;
+}
+
+.chatbox-section {
+  flex: 1.5;
+  padding: 10px;
+}
+
+.ide-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.ide-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ide-editor-section {
+  flex: 6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-editor {
+  flex: 1;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 16px;
+  border-radius: 15px;
+  resize: none;
+  outline: none;
+  margin-bottom: 10px;
+  background-color: #051330;
+  color: white;
+}
+
+.compile-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(to left, #091e48, #530f31);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.ide-output-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.testcase-editor {
+  flex: 1;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 16px;
+  border-radius: 15px;
+  resize: none;
+  outline: none;
+  margin-bottom: 10px;
+  background-color: #290a20;
+  color: white;
+}
+
+.output-area {
+  flex: 3;
+  color: white;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  background: linear-gradient(to left, #091e48, #530f31);
+  border-radius: 15px;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: white;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal-fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+body.modal-active .App {
+  filter: blur(5px);
+  transition: filter 0.5s ease;
+}
+
+body:not(.modal-active) .App {
+  filter: none;
+}

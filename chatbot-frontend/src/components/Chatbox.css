@@ -1,0 +1,99 @@
+.chat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-window {
+  width: 500px;
+  height: 80vh;
+  background-image: url("https://w0.peakpx.com/wallpaper/392/251/HD-wallpaper-python-kod-kodlama-piton-code-software-mobile-logo-py-yazilim.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 3px rgb(121, 38, 80, 0.8);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: white;
+}
+
+.chat-history {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.user-message {
+  background: linear-gradient(120deg, #091e48, #530f31);
+  align-self: flex-end;
+  text-align: right;
+  color: white;
+}
+
+.bot-message {
+  background: linear-gradient(135deg, #530f31, #091e48);
+  align-self: flex-start;
+  text-align: left;
+  color: white;
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px;
+  border-top: 1px solid #444;
+  background: linear-gradient(to left, #350920, #051431);
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 50px;
+  margin-right: 10px;
+  background: linear-gradient(to left, #091e48, #530f31);
+  color: white;
+  border-style: solid;
+  border-color: #051431;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background: linear-gradient(to left, #091e48, #530f31);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: linear-gradient(to left, #051431, #350920);
+}
+
+.copy-button {
+  background-color: #051431;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  border-style: solid;
+  border-color: #051431;
+}
+
+.copy-button:hover {
+  background-color: #350920;
+}

@@ -15,6 +15,9 @@ import pickle
 import spacy
 import torch
 from dotenv import load_dotenv
+from flask_cors import CORS
+import judge0_compiler
+
 
 # Loading the Model and Vocabulary Files
 try:
@@ -95,6 +98,9 @@ def eng_to_python(src):
 
 app = Flask(__name__)
 
+# CROSS RESOURCE SHARING - To Frontend React
+CORS(app)
+
 
 @app.route("/generate-code", methods=["POST"])
 def generate_code():
@@ -103,13 +109,27 @@ def generate_code():
     try:
         generated_code = eng_to_python(prompt)
         print(
-            f"{Fore.LIGHTBLUE_EX}\nGENERATED CODE : \n {generate_code}{Style.RESET_ALL}"
+            f"{Fore.LIGHTBLUE_EX}\nGENERATED CODE : \n {generated_code}{Style.RESET_ALL}"
         )
         return jsonify({"code": generated_code})
 
     except Exception as e:
         print(f"{Fore.RED}ERROR GENERATING PROMPT : {Style.RESET_ALL}", e)
         return None
+
+
+@app.route("/compile-code", methods=["POST"])
+def compiler():
+    data = request.json
+    code = data.get("source_code")
+    input_data = data.get("input_data")
+    response_received, compiled_token = judge0_compiler.create_submission(
+        source_code=code, inputs=input_data
+    )
+    compiled_output = judge0_compiler.get_submission(
+        token=compiled_token, response=response_received
+    )
+    return jsonify({"compiled_output": compiled_output})
 
 
 if __name__ == "__main__":
