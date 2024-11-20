@@ -31,7 +31,7 @@ const App = () => {
       {modalVisible && (
         <div className="modal">
           <div className="modal-content">
-            <h1>Welcome to EchoCode</h1>
+            <h1 style={{ color: "white" }}>Welcome to GlossaCompiler</h1>
             <div className="image-text-group">
               <img
                 src="favicon.png" /* Replace with the path to your image */
@@ -55,7 +55,7 @@ const App = () => {
       )}
 
       <div className="page-title">
-        <img className="banner" src="banner.png"></img>
+        <img className="banner" src="bannerNew.png"></img>
       </div>
 
       <div className="app-container">
