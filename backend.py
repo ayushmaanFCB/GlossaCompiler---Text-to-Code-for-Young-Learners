@@ -17,7 +17,7 @@ import torch
 from dotenv import load_dotenv
 from flask_cors import CORS
 import judge0_compiler
-
+import autopep8, ast
 
 # Loading the Model and Vocabulary Files
 try:
@@ -108,6 +108,12 @@ def generate_code():
     prompt = data.get("prompt")
     try:
         generated_code = eng_to_python(prompt)
+        try:
+            generated_code = autopep8.fix_code(generated_code)
+            ast.parse(generated_code)  # Validate the corrected code
+        except SyntaxError:
+            pass
+
         print(
             f"{Fore.LIGHTBLUE_EX}\nGENERATED CODE : \n {generated_code}{Style.RESET_ALL}"
         )
@@ -133,4 +139,4 @@ def compiler():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
