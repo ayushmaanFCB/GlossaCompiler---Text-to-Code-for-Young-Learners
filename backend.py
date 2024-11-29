@@ -144,6 +144,7 @@ def suggest_videos():
     prompt = data.get("prompt")
     try:
         videos = youtube_videos.fetch_educational_videos(prompt)
+        print(videos)
         return jsonify({"videos": videos})
     except Exception as e:
         print(f"Error fetching videos: {e}")

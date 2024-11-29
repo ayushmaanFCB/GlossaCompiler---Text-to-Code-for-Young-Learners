@@ -3,11 +3,87 @@ import axios from "axios";
 import "./Chatbox.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
+import "font-awesome/css/font-awesome.min.css";
+import { FaYoutube } from "react-icons/fa";
 
 function Chatbox({ onCopyToIDE }) {
   const [messages, setMessages] = useState([]);
   const [userMessage, setUserMessage] = useState("");
   const chatHistoryRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [videoSuggestions, setVideoSuggestions] = useState([]);
+
+  const fetchVideoSuggestions = async (messageText) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/suggest-videos",
+        {
+          prompt: messageText, // Use the provided message text as the query
+        }
+      );
+      if (response.data.videos) {
+        setVideoSuggestions(response.data.videos);
+        setShowModal(true); // Show the modal with video suggestions
+      } else {
+        console.error("Failed to fetch videos");
+      }
+    } catch (error) {
+      console.error("Error fetching videos:", error);
+    }
+  };
+
+  function VideoSuggestionsModal({ videos, onClose }) {
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      return date.toLocaleDateString(); // Format to 'MM/DD/YYYY'
+    };
+
+    return (
+      <div className="modal-overlay youtube-suggestions-modal">
+        <div className="modal-content">
+          <h3 style={{ padding: "1rem" }}>SUGGESTED TUTORIAL VIDEOS</h3>
+          <div className="video-list">
+            {videos.map((video, index) => (
+              <div key={index} className="video-item">
+                {/* Video preview on the left */}
+                <iframe
+                  src={`https://www.youtube.com/embed/${new URL(
+                    video.link
+                  ).searchParams.get("v")}`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+
+                {/* Video title, link, description, and publish date on the right */}
+                <div className="video-info">
+                  <h4 style={{ fontSize: "20px" }}>{video.title}</h4>
+                  <small style={{ color: "gray" }}>
+                    {formatDate(video.publishedAt)}
+                  </small>{" "}
+                  {/* Format and show the publish date */}
+                  <p
+                    style={{
+                      color: "white",
+                      textAlign: "left",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {video.description}
+                  </p>{" "}
+                  {/* Show video description */}
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="close-button" onClick={onClose}>
+            &times; {/* This will display an "X" */}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const handleSendMessage = async () => {
     if (!userMessage.trim()) return;
@@ -57,6 +133,13 @@ function Chatbox({ onCopyToIDE }) {
                   >
                     Copy to IDE
                   </button>
+                  <button
+                    onClick={() => fetchVideoSuggestions(msg.text)} // Pass the bot's response text
+                    className="suggestions-button"
+                  >
+                    <FaYoutube size={22} />{" "}
+                    {/* Font Awesome YouTube icon with size */}
+                  </button>
                 </>
               ) : (
                 msg.text
@@ -77,6 +160,14 @@ function Chatbox({ onCopyToIDE }) {
           <button onClick={handleSendMessage}>Send</button>
         </div>
       </div>
+
+      {/* Conditional rendering for the modal */}
+      {showModal && (
+        <VideoSuggestionsModal
+          videos={videoSuggestions}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 }

@@ -31,6 +31,8 @@ def fetch_educational_videos(prompt, max_results=5):
             {
                 "title": video["snippet"]["title"],
                 "link": f"https://www.youtube.com/watch?v={video['id']['videoId']}",
+                "description": video["snippet"]["description"],
+                "publishedAt": video["snippet"]["publishedAt"],
             }
             for video in videos
         ]

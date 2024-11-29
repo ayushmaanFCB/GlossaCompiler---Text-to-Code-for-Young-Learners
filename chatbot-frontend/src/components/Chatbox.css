@@ -33,6 +33,7 @@
   border-radius: 10px;
   max-width: 70%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
 
 .user-message {
@@ -81,6 +82,7 @@
   background: linear-gradient(to left, #051431, #350920);
 }
 
+/* Style for the copy button */
 .copy-button {
   background-color: #051431;
   color: white;
@@ -92,8 +94,182 @@
   font-size: 12px;
   border-style: solid;
   border-color: #051431;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copy-button:hover {
   background-color: #350920;
+}
+
+/* Position the suggestions button at the bottom-right corner */
+.suggestions-button {
+  position: absolute; /* Fix position relative to .chat-message */
+  bottom: 10px; /* Distance from the bottom of the message container */
+  right: 10px; /* Distance from the right of the message container */
+  background: none; /* No background */
+  color: inherit; /* Inherit text color from parent */
+  border: none; /* No border */
+  padding: 5px 10px; /* Adjust padding to match the other button */
+  cursor: pointer;
+  font-size: 18px; /* You can adjust the font size to match the icon size */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggestions-button i {
+  margin-right: 5px; /* Space between the icon and any potential text */
+}
+
+.suggestions-button:hover {
+  opacity: 0.8; /* Optional: Add a subtle hover effect */
+}
+
+/* Modal Overlay */
+.youtube-suggestions-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.youtube-suggestions-modal .modal-content {
+  background: linear-gradient(to left, #091e48, #530f31);
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto; /* Make the modal scrollable */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Modal Header */
+.youtube-suggestions-modal .modal-content h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: white;
+  font-family: "Eagle Lake", serif;
+  padding: 2rem;
+}
+
+/* Video List Container */
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Add spacing between video items */
+  padding: 1rem;
+}
+
+/* Video Item */
+.video-item {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between iframe and text */
+
+  padding-bottom: 10px;
+}
+
+/* Video Iframe */
+.video-item iframe {
+  width: 400px;
+  height: 200px;
+  border-radius: 8px;
+}
+
+/* Video Info (Title + Link) */
+.video-info {
+  flex: 1; /* Take up remaining space */
+  padding-left: 2rem;
+  font-family: "Trebuchet MS";
+}
+
+.video-info h4 {
+  font-size: 1rem;
+  font-weight: bolder;
+  margin-bottom: 5px;
+  color: #ef3059;
+}
+
+.video-info a {
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.video-info a:hover {
+  text-decoration: underline;
+}
+
+.close-button {
+  position: absolute; /* Absolute positioning to place it on top-right */
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  background: none; /* Remove background */
+  color: #ff4d4f; /* Red color */
+  border: none;
+  font-size: 2.5rem; /* Make the "X" large */
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff7875; /* Lighten red on hover */
+}
+
+/* Styling the scrollbar track (background area of the scrollbar) */
+.youtube-suggestions-modal .modal-content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+/* Styling the thumb (the part that moves in the scrollbar) */
+.youtube-suggestions-modal .modal-content::-webkit-scrollbar-thumb {
+  background-color: rgb(82, 15, 49); /* Set thumb color to deep red */
+  border-radius: 10px; /* Rounded corners for a sleek look */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Optional: Border for contrast */
+}
+
+/* Optional: Styling for the scrollbar when hovered */
+.youtube-suggestions-modal .modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(
+    82,
+    15,
+    49
+  ); /* Thumb stays the same color when hovered */
+}
+
+/* Styling the scrollbar track on hover */
+.youtube-suggestions-modal .modal-content::-webkit-scrollbar-track {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* Light transparent background for the track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+/* Firefox scrollbar styling */
+.youtube-suggestions-modal .modal-content {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: rgb(82, 15, 49) rgba(0, 0, 0, 0.1); /* Thumb color and track color */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.eagle-lake-regular {
+  font-family: "Eagle Lake", serif;
+  font-weight: 400;
+  font-style: normal;
 }
