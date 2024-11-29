@@ -2,6 +2,7 @@ import requests, os
 import base64
 from dotenv import load_dotenv
 from colorama import Fore, Style
+from pprint import pprint
 
 try:
     load_dotenv()
@@ -42,7 +43,7 @@ def create_submission(source_code, inputs=""):
 
     try:
         response = requests.post(url, json=payload, headers=headers, params=querystring)
-        print(response.json())
+        pprint(response.json())
         return response.json(), response.json()["token"]
     except Exception as e:
         print(
