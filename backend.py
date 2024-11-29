@@ -16,7 +16,7 @@ import spacy
 import torch
 from dotenv import load_dotenv
 from flask_cors import CORS
-import judge0_compiler
+import judge0_compiler, youtube_videos
 import autopep8, ast
 
 # Loading the Model and Vocabulary Files
@@ -136,6 +136,18 @@ def compiler():
         token=compiled_token, response=response_received
     )
     return jsonify({"compiled_output": compiled_output})
+
+
+@app.route("/suggest-videos", methods=["POST"])
+def suggest_videos():
+    data = request.json
+    prompt = data.get("prompt")
+    try:
+        videos = youtube_videos.fetch_educational_videos(prompt)
+        return jsonify({"videos": videos})
+    except Exception as e:
+        print(f"Error fetching videos: {e}")
+        return jsonify({"error": "Failed to fetch videos"}), 500
 
 
 if __name__ == "__main__":
